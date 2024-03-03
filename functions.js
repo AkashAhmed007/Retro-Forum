@@ -2,7 +2,7 @@ const posts = async ()=>{
     const response =await fetch('https://openapi.programming-hero.com/api/retro-forum/posts');
     const data = await response.json();
     const postData = data.posts;
-    const post = document.getElementById('post');
+    const allPost = document.getElementById('post');
     postData.forEach((item)=>{
         const div = document.createElement('div');
         div.innerHTML = `<div class="flex gap-4 border-1 bg-[#f3f3f5] rounded-2xl w-full p-8 mb-5">
@@ -37,7 +37,7 @@ const posts = async ()=>{
                 </div>
         </div>
     </div>`
-    post.appendChild(div);
+    allPost.appendChild(div);
     })
 }
 posts();
@@ -61,7 +61,7 @@ const showInbox = (item1,item2)=>{
    readMsg.innerHTML = markMsg;
 }
 
-const post = document.getElementById("latest-post");
+const NewPost = document.getElementById("latest-post");
 const latestPost = async ()=>{
     const response =await fetch('https://openapi.programming-hero.com/api/retro-forum/latest-posts');
     const data = await response.json();
@@ -85,12 +85,12 @@ const latestPost = async ()=>{
             </div>
             <div>
                 <p>${item.author.name}</p>
-                <p>${item.author.designation}</p>
+                <p id="designation">${item.author.designation}</p>
             </div>
         </div>
     </div>`
-    post.appendChild(div);
-    })
+    NewPost.appendChild(div);  
+}) 
 }
 latestPost();
 
@@ -98,7 +98,6 @@ const categoryPost =async(catId)=>{
     const res = await fetch(`https://openapi.programming-hero.com/api/retro-forum/posts?category=${catId}`);
     const data = await res.json();
     const categoryData = data.posts;
-    console.log(categoryData);
     const post = document.getElementById('post');
     post.innerHTML = '';
     categoryData.forEach((item)=>{
@@ -139,13 +138,14 @@ const categoryPost =async(catId)=>{
     })
 }
 const handleSearch =()=>{
-    let search = document.getElementById('search').value;
-    if(search){
-        categoryPost(search); 
-        search.innerContent = '';
+    let search = document.getElementById('search');
+    let value = search.value;
+    if(value){
+        categoryPost(value); 
     }else{
         alert('Please Enter a category name');
     }   
+    search.value = '';
 }
 
 
