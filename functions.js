@@ -59,5 +59,37 @@ const showInbox = (item1,item2)=>{
    inbox.appendChild(div);
    markMsg++; 
    readMsg.innerHTML = markMsg;
-    
 }
+
+const post = document.getElementById("latest-post");
+const latestPost = async ()=>{
+    const response =await fetch('https://openapi.programming-hero.com/api/retro-forum/latest-posts');
+    const data = await response.json();
+    data.forEach((item)=>{
+        const div = document.createElement('div');
+        div.innerHTML = `<div class="w-80 bg-base-100 shadow-xl border-2 border-gray-300 rounded-2xl p-5">
+        <figure class="mb-4">
+        <img src="${item.cover_image}" alt="pic" class="rounded-xl w-full h-1/2 mx-auto" />
+        </figure>
+        <div class="flex justify-start gap-4 mb-4">
+            <img src="images/date.png" alt="">
+            <p>${item.author.posted_date}</p>
+        </div>
+        <div class="">
+            <p class="font-bold mb-4">${item.title}</p>
+            <p class="text-gray-600">${item.description}</p>
+        </div>
+        <div class="flex gap-4 items-center">
+            <div class="mt-3">
+                <img src="${item.profile_image}" alt="" class="w-12 h-12 border-1 rounded-full">
+            </div>
+            <div>
+                <p>${item.author.name}</p>
+                <p>${item.author.designation}</p>
+            </div>
+        </div>
+    </div>`
+    post.appendChild(div);
+    })
+}
+latestPost();
