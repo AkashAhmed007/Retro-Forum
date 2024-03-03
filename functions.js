@@ -32,13 +32,32 @@ const posts = async ()=>{
                         <img src="images/time.png" alt="">
                         <p>${item.posted_time} min</p>
                     </div>
+                </div id ="message">
+                   <button onclick="showInbox('${item.title}','${item.view_count}')"><img src="images/inbox.png" alt=""></button>
                 </div>
-                    <img src="images/inbox.png" alt="">
-            </div>
         </div>
     </div>`
     post.appendChild(div);
     })
-
 }
 posts();
+const message = document.getElementById('message');
+const inbox = document.getElementById('inbox');
+const readMsg = document.getElementById('read-msg');
+let markMsg = 0;
+const showInbox = (item1,item2)=>{
+   const div = document.createElement('div');
+   div.innerHTML = `<div class="card w-10/12 mx-auto bg-base-100 shadow-2xl p-3 mt-5">
+                    <div class="flex justify-center items-center gap-4 p-2">
+                        <p class="font-bold">${item1}</p>
+                        <div class="flex gap-4 justify-center items-center">
+                        <img src="images/Eye.png" alt="">
+                        <p>${item2}</p>
+                        </div>
+                    </div>
+                </div>`
+   inbox.appendChild(div);
+   markMsg++; 
+   readMsg.innerHTML = markMsg;
+    
+}
