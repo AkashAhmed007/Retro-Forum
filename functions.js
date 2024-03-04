@@ -9,6 +9,8 @@ const posts = async ()=>{
         }else{
             isActive = `<div id="signal" class="absolute top-0 right-0 translate-x-2 -translate-y-2 w-4 h-4 bg-red-700 rounded-full"></div>` 
         }
+        let originalword = item.title;
+        let changeWord = originalword.replace("Beginner's","Beginners");
         const div = document.createElement('div');
         div.innerHTML = `<div class="flex gap-4 border-1 bg-[#f3f3f5] rounded-2xl w-full p-8 mb-5">
         <div class="relative mt-2">
@@ -38,7 +40,7 @@ const posts = async ()=>{
                         <p>${item.posted_time} min</p>
                     </div>
                 </div id ="message">
-                   <button onclick="showInbox('${item.title}','${item.view_count}')"><img src="images/inbox.png" alt=""></button>
+                   <button onclick="showInbox('${changeWord}','${item.view_count}')"><img src="images/inbox.png" alt=""></button>
                 </div>
         </div>
     </div>`
@@ -112,6 +114,11 @@ const categoryPost =async(catId)=>{
         }else{
             isActive = `<div id="signal" class="absolute top-0 right-0 translate-x-2 -translate-y-2 w-4 h-4 bg-red-700 rounded-full"></div>` 
         }
+
+
+        let originalword = item.title;
+        let changeWord = originalword.replace("Beginner's","Beginners");
+
         const div = document.createElement('div');
         div.innerHTML = `<div class="flex gap-4 border-1 bg-[#f3f3f5] rounded-2xl w-full p-8 mb-5">
         <div class="relative mt-2">
@@ -141,7 +148,7 @@ const categoryPost =async(catId)=>{
                         <p>${item.posted_time} min</p>
                     </div>
                 </div id ="message">
-                   <button onclick="showInbox('${item.title}','${item.view_count}')"><img src="images/inbox.png" alt=""></button>
+                   <button onclick="showInbox('${changeWord}','${item.view_count}')"><img src="images/inbox.png" alt=""></button>
                 </div>
         </div>
     </div>`
