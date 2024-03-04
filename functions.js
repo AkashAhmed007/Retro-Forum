@@ -4,11 +4,16 @@ const posts = async ()=>{
     const postData = data.posts;
     const allPost = document.getElementById('post');
     postData.forEach((item)=>{
+        if(item.isActive){
+            isActive = `<div id="signal" class="absolute top-0 right-0 translate-x-2 -translate-y-2 w-4 h-4 bg-green-700 rounded-full"></div>`
+        }else{
+            isActive = `<div id="signal" class="absolute top-0 right-0 translate-x-2 -translate-y-2 w-4 h-4 bg-red-700 rounded-full"></div>` 
+        }
         const div = document.createElement('div');
         div.innerHTML = `<div class="flex gap-4 border-1 bg-[#f3f3f5] rounded-2xl w-full p-8 mb-5">
         <div class="relative mt-2">
             <img src="${item.image}" class="w-16 h-16 rounded-xl">
-            <img src="images/Status.png" class="absolute top-0 right-0 translate-x-2 -translate-y-2 w-5 h-5">
+            ${isActive}
         </div>
         <div class="mb-3">
             <div class="flex gap-3 mb-2">
@@ -37,10 +42,11 @@ const posts = async ()=>{
                 </div>
         </div>
     </div>`
-    allPost.appendChild(div);
-    })
+    allPost.appendChild(div); 
+})  
 }
 posts();
+
 const message = document.getElementById('message');
 const inbox = document.getElementById('inbox');
 const readMsg = document.getElementById('read-msg');
@@ -73,7 +79,7 @@ const latestPost = async ()=>{
         </figure>
         <div class="flex justify-start gap-4 mb-4">
             <img src="images/date.png" alt="">
-            <p>${item.author.posted_date}</p>
+            <p>${item.author.posted_date?item.author.posted_date:"No publish date"}</p>
         </div>
         <div class="">
             <p class="font-bold mb-4">${item.title}</p>
@@ -85,7 +91,7 @@ const latestPost = async ()=>{
             </div>
             <div>
                 <p>${item.author.name}</p>
-                <p id="designation">${item.author.designation}</p>
+                <p id="designation">${item.author.designation?item.author.designation:"Unknown"}</p>
             </div>
         </div>
     </div>`
@@ -101,11 +107,16 @@ const categoryPost =async(catId)=>{
     const post = document.getElementById('post');
     post.innerHTML = '';
     categoryData.forEach((item)=>{
+        if(item.isActive){
+            isActive = `<div id="signal" class="absolute top-0 right-0 translate-x-2 -translate-y-2 w-4 h-4 bg-green-700 rounded-full"></div>`
+        }else{
+            isActive = `<div id="signal" class="absolute top-0 right-0 translate-x-2 -translate-y-2 w-4 h-4 bg-red-700 rounded-full"></div>` 
+        }
         const div = document.createElement('div');
         div.innerHTML = `<div class="flex gap-4 border-1 bg-[#f3f3f5] rounded-2xl w-full p-8 mb-5">
         <div class="relative mt-2">
             <img src="${item.image}" class="w-16 h-16 rounded-xl">
-            <img src="images/Status.png" class="absolute top-0 right-0 translate-x-2 -translate-y-2 w-5 h-5">
+            ${isActive}
         </div>
         <div class="mb-3">
             <div class="flex gap-3 mb-2">
@@ -130,12 +141,12 @@ const categoryPost =async(catId)=>{
                         <p>${item.posted_time} min</p>
                     </div>
                 </div id ="message">
-                   <button onclick="showInbox('${item.title}','${item.view_count}')"><img src="images/inbox.png" alt=""></button>
+                   <button onclick="showInbox('${changeSentence}','${item.view_count}')"><img src="images/inbox.png" alt=""></button>
                 </div>
         </div>
     </div>`
     post.appendChild(div);
-    })
+})
 }
 const handleSearch =()=>{
     let search = document.getElementById('search');
