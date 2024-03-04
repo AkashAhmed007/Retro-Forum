@@ -11,8 +11,8 @@
 <body>
 <header>
         <!-- navbar section -->
-        <nav class="container w-10/12 mx-auto my-12">
-            <div class="flex justify-between">
+        <nav class="lg:container lg:w-10/12 mx-auto my-12">
+            <div class="lg:flex flex justify-between">
                 <div>
                     <img src="images/logo.png" alt="logo">
                 </div>
@@ -23,7 +23,7 @@
                         <a href="#" data-toggle="tooltip" title="Add" class="border-1 bg-gray-100 rounded-full p-3"><img src="images/add.png" alt="add" ></a>
                         <a href="#" data-toggle="tooltip" title="Like" class="border-1 bg-gray-100 rounded-full p-3"><img src="images/like.png" alt="like"></a>
                     </div>
-                    <button class="border-2xl rounded-3xl bg-blue-300 px-4 py-2">Sign Up</button>
+                    <button class="lg:border-2xl rounded-3xl bg-blue-300 px-4 py-2">Sign Up</button>
                 </div>  
             </div>
         </nav>
@@ -61,12 +61,19 @@
         </section>
 <!-- Let's discuss section -->
         <section id="discuss">
+            <div id="toggle-spinner" class="text-center my-4 hidden">
+                <span class="loading loading-bars loading-xs mx-auto"></span>
+                <span class="loading loading-bars loading-sm"></span>
+                <span class="loading loading-bars loading-md"></span>
+                <span class="loading loading-bars loading-lg"></span>
+            </div>
             <div class="text-center mb-24">
                 <h1 class="text-4xl font-bold mb-5">Let's Discuss</h1>
                 <p class="text-xl w-3/4 mx-auto text-gray-400 mb-5">Yes,you can run unit tests and view the results directly within the app.The integreted testing features allowed for a streamlined.</p>
             </div>
            <div class="flex gap-5">
             <div id="post"> 
+                
             </div>
             <div id ="inbox" class="border-1 rounded-2xl bg-[#f3f3f5] w-1/2">
                 <div class="flex justify-around items-center m-2">

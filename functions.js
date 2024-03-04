@@ -114,11 +114,8 @@ const categoryPost =async(catId)=>{
         }else{
             isActive = `<div id="signal" class="absolute top-0 right-0 translate-x-2 -translate-y-2 w-4 h-4 bg-red-700 rounded-full"></div>` 
         }
-
-
         let originalword = item.title;
         let changeWord = originalword.replace("Beginner's","Beginners");
-
         const div = document.createElement('div');
         div.innerHTML = `<div class="flex gap-4 border-1 bg-[#f3f3f5] rounded-2xl w-full p-8 mb-5">
         <div class="relative mt-2">
@@ -153,9 +150,11 @@ const categoryPost =async(catId)=>{
         </div>
     </div>`
     post.appendChild(div);
-})
+});
+toggleSpinner(false);
 }
 const handleSearch =()=>{
+    toggleSpinner(true);
     let search = document.getElementById('search');
     let value = search.value;
     if(value){
@@ -163,8 +162,18 @@ const handleSearch =()=>{
     }else{
         alert('Please Enter a category name');
     }   
-    search.value = '';
+    search.value = ''; 
 }
 
-
+const toggleSpinner = (isLoading)=>{
+    const loading = document.getElementById('toggle-spinner');
+    if(isLoading){
+        loading.classList.remove('hidden');
+    }
+    else{
+        setTimeout(()=>{
+            loading.classList.add('hidden');
+        },2000)
+    } 
+}
 
