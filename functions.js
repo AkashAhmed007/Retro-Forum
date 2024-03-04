@@ -141,7 +141,7 @@ const categoryPost =async(catId)=>{
                         <p>${item.posted_time} min</p>
                     </div>
                 </div id ="message">
-                   <button onclick="showInbox('${changeSentence}','${item.view_count}')"><img src="images/inbox.png" alt=""></button>
+                   <button onclick="showInbox('${item.title}','${item.view_count}')"><img src="images/inbox.png" alt=""></button>
                 </div>
         </div>
     </div>`
